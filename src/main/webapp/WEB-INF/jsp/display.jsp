@@ -1,11 +1,20 @@
 <html>
 <head>
-	<title>there is <%= books.length%> books</title>
+	<title>books</title>
 </head>
 
 <body>
+
+	<%
+		ArrayList<Book> books =(ArrayList<Book>)request.getAttribute("books");
+	%>
+
+	<h1>
+		There are <%= books.size() books%>	
+	</h1>
 	<% 
-		for(int i =0; i <books.length; i++){
+
+		for(int i =0; i <books.size(); i++){
 	%>
 		No.<%= i %>
 		ISBN: <%= books[i].getIsbn() %>

@@ -11,14 +11,20 @@
         <load-on-start>1</load-on-start>
     </servlet>
 
+    <servlet>
+        <servlet-name>AddBook</servlet-name>
+        <servlet-class>com.liqing.controller.AddBookController</servlet-class>
+        <load-on-start>1</load-on-start>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Book</servlet-name>
         <url-pattern>/display</url-pattern>
     </servlet-mapping>
 
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Book</servlet-name>-->
-        <!--<url-pattern>/add</url-pattern>-->
-    <!--</servlet-mapping>-->
+    <servlet-mapping>
+        <servlet-name>AddBook</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
 
 </web-app>
