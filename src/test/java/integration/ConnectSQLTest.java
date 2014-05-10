@@ -33,7 +33,7 @@ public class ConnectSQLTest {
         ResultSet resultSet = jdbcService.executeSelect("select count(*) from book");
 
         resultSet.next();
-        assertThat(resultSet.getInt(1), is(2));
+        assertThat(resultSet.getInt(1), is(3));
 
         jdbcService.executeUpdate("delete from book where isbn = 2");
 
