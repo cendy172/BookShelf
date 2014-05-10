@@ -9,13 +9,10 @@ import java.sql.SQLException;
 
 public class JDBCService {
     public ResultSet executeSelect(String sql) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+        PreparedStatement statement;
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            return resultSet;
+            statement = getConnection().prepareStatement(sql);
+            return statement.executeQuery();
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -29,8 +26,8 @@ public class JDBCService {
     }
 
     public void executeUpdate(String sql) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection connection;
+        PreparedStatement statement;
         try {
             connection = getConnection();
             statement = connection.prepareStatement(sql);
@@ -51,15 +48,8 @@ public class JDBCService {
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/bookshelf");
         basicDataSource.setUsername("root");
-        basicDataSource.setPassword("5201314172");
+        basicDataSource.setPassword("1234");
 
         return basicDataSource.getConnection();
-
-//        Class.forName("com.mysql.Driver").newInstance();
-//
-//        String url = "jdbc:mysql://localhost:3306/bookshelf";
-//        String username = "root";
-//        String password = "5201314172";
-//        return DriverManager.getConnection(url, username, password);
     }
 }
