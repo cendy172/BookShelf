@@ -20,7 +20,7 @@ public class BookController extends HttpServlet {
         JDBCService jdbcService = new JDBCService();
         ArrayList<Book> books = new ArrayList<Book>();
 
-        ResultSet result = jdbcService.execute("select * from book");
+        ResultSet result = jdbcService.executeSelect("select * from book");
         try {
             while (result.next()) {
                 Book book = new Book();
@@ -38,10 +38,4 @@ public class BookController extends HttpServlet {
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/WEB-INF/jsp/display.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
-
-    public void doPost(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
-        JDBCService jdbcService = new JDBCService();
-        jdbcService.execute("select * from book");
-    }
-
 }
