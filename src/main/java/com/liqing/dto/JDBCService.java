@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JDBCService {
-    public ResultSet execute(String sql) {
+    public ResultSet executeSelect(String sql) {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -24,22 +24,25 @@ public class JDBCService {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-//            closeConnection(connection, statement);
         }
         return null;
     }
 
-    private void closeConnection(Connection connection, PreparedStatement statement) {
-        if (connection != null) {
-            try {
-                connection.close();
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    public void executeUpdate(String sql) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.executeUpdate();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
