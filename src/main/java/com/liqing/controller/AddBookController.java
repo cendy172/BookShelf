@@ -27,8 +27,7 @@ public class AddBookController extends HttpServlet {
         String author = httpRequest.getParameter("author");
 
         jdbcService.executeUpdate("insert into book values(" + isbn + ",\"" + name + "\"," + price + ",\"" + author + "\")");
-
-        getServletContext().getRequestDispatcher("/WEB-INF/jsp/display.jsp").forward(httpRequest, httpServletResponse);
+        httpServletResponse.sendRedirect("display");
     }
 
 }
