@@ -4,7 +4,6 @@ import com.liqing.domain.Book;
 import com.liqing.dto.JDBCService;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,18 +23,17 @@ public class BookController extends HttpServlet {
         try {
             while (result.next()) {
                 Book book = new Book();
-                book.setIsbn(result.getInt("1"));
-                book.setName(result.getString("2"));
-                book.setPrice(result.getDouble("3"));
-                book.setAuthor(result.getString("4"));
+                book.setIsbn(result.getInt(1));
+                book.setName(result.getString(2));
+                book.setPrice(result.getDouble(3));
+                book.setAuthor(result.getString(4));
                 books.add(book);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         httpServletRequest.setAttribute("books", books);
-        ServletContext servletContext = getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/WEB-INF/jsp/display.jsp");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/display.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }
