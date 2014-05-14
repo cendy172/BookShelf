@@ -29,4 +29,8 @@
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <listener-class>com.liqing.listener.AppServletContextListener</listener-class>
+    </listener>
+
 </web-app>
