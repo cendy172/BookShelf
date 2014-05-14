@@ -13,6 +13,6 @@ public class AppServletContextListener implements javax.servlet.ServletContextLi
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-
+        sce.getServletContext().removeAttribute("jdbcService");
     }
 }
