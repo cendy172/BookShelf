@@ -8,6 +8,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JDBCService {
+
+    private String driver;
+    private String url;
+    private String username;
+    private String password;
+
+    public JDBCService(String driver, String url, String username, String password) {
+        this.driver = driver;
+        this.url = url;
+        this.username = username;
+        this.password = password;
+    }
+
     public ResultSet executeSelect(String sql) {
         PreparedStatement statement;
         try {
@@ -45,10 +58,10 @@ public class JDBCService {
 
     private Connection getConnection() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        basicDataSource.setUrl("jdbc:mysql://localhost:3306/bookshelf");
-        basicDataSource.setUsername("root");
-        basicDataSource.setPassword("1234");
+        basicDataSource.setDriverClassName(driver);
+        basicDataSource.setUrl(url);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
 
         return basicDataSource.getConnection();
     }

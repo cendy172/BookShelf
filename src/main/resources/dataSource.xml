@@ -3,7 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-
-    <bean id="jdbcService" class="com.liqing.dto.JDBCService"></bean>
+    <bean id="jdbcService" class="com.liqing.dto.JDBCService">
+        <constructor-arg type="String" value="com.mysql.jdbc.Driver"/>
+        <constructor-arg type="String" value="jdbc:mysql://localhost:3306/bookshelf"/>
+        <constructor-arg type="String" value="root"/>
+        <constructor-arg type="String" value="1234"/>
+    </bean>
 
 </beans>
