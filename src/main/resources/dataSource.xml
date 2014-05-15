@@ -3,11 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>database.properties</value>
+            </list>
+        </property>
+    </bean>
+
     <bean id="jdbcService" class="com.liqing.dto.JDBCService">
-        <constructor-arg type="String" value="com.mysql.jdbc.Driver"/>
-        <constructor-arg type="String" value="jdbc:mysql://localhost:3306/bookshelf"/>
-        <constructor-arg type="String" value="root"/>
-        <constructor-arg type="String" value="1234"/>
+        <constructor-arg type="String" value="${database.driver}"/>
+        <constructor-arg type="String" value="${database.url}"/>
+        <constructor-arg type="String" value="${database.username}"/>
+        <constructor-arg type="String" value="${database.password}"/>
     </bean>
 
 </beans>
