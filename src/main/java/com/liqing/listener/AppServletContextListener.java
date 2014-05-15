@@ -1,5 +1,6 @@
 package com.liqing.listener;
 
+import com.liqing.dto.JDBCService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletContextEvent;
@@ -15,6 +16,7 @@ public class AppServletContextListener implements javax.servlet.ServletContextLi
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        ((JDBCService) sce.getServletContext().getAttribute("jdbcService")).closeConnection();
         sce.getServletContext().removeAttribute("jdbcService");
     }
 }

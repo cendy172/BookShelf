@@ -13,25 +13,21 @@ public class JDBCService {
     private String url;
     private String username;
     private String password;
+    private Connection connection;
 
-    public JDBCService(String driver, String url, String username, String password) {
+    public JDBCService(String driver, String url, String username, String password) throws ClassNotFoundException, SQLException, InstantiationException, IllegalAccessException {
         this.driver = driver;
         this.url = url;
         this.username = username;
         this.password = password;
+        connection = getConnection();
     }
 
     public ResultSet executeSelect(String sql) {
         PreparedStatement statement;
         try {
-            statement = getConnection().prepareStatement(sql);
+            statement = connection.prepareStatement(sql);
             return statement.executeQuery();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,18 +35,10 @@ public class JDBCService {
     }
 
     public void executeUpdate(String sql) {
-        Connection connection;
         PreparedStatement statement;
         try {
-            connection = getConnection();
             statement = connection.prepareStatement(sql);
             statement.executeUpdate();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,5 +52,15 @@ public class JDBCService {
         basicDataSource.setPassword(password);
 
         return basicDataSource.getConnection();
+    }
+
+    public void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
