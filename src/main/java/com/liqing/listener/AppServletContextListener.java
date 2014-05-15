@@ -1,6 +1,6 @@
 package com.liqing.listener;
 
-import com.liqing.dto.JDBCService;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.servlet.ServletContextEvent;
 
@@ -8,7 +8,9 @@ public class AppServletContextListener implements javax.servlet.ServletContextLi
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        sce.getServletContext().setAttribute("jdbcService", new JDBCService());
+
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("dataSource.xml");
+        sce.getServletContext().setAttribute("jdbcService", classPathXmlApplicationContext.getBean("jdbcService"));
     }
 
     @Override
