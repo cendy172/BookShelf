@@ -1,4 +1,4 @@
-package com.liqing.controller;
+package liqing.controller;
 
 import com.liqing.domain.Book;
 import com.liqing.dto.JDBCService;

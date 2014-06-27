@@ -11,12 +11,12 @@
 
     <servlet>
         <servlet-name>Book</servlet-name>
-        <servlet-class>com.liqing.controller.BookController</servlet-class>
+        <servlet-class>liqing.controller.BookController</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AddBook</servlet-name>
-        <servlet-class>com.liqing.controller.AddBookController</servlet-class>
+        <servlet-class>liqing.controller.AddBookController</servlet-class>
     </servlet>
 
     <servlet-mapping>

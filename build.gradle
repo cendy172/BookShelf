@@ -1,6 +1,5 @@
-apply plugin: 'war'
-apply plugin: 'jetty'
 apply plugin: 'idea'
+apply plugin: 'java'
 
 version = '1.0'
 
@@ -10,14 +9,8 @@ repositories {
 
 dependencies {
     compile(
-            'commons-dbcp:commons-dbcp:1.4',
-            'mysql:mysql-connector-java:5.1.30',
-            'javax.servlet:servlet-api:2.5',
-            'javax.servlet.jsp:jsp-api:2.2.1-b03',
-            'javax.servlet:jstl:1.2',
-            'org.springframework:spring-core:4.0.4.RELEAS',
-            'org.springframework:spring-beans:4.0.4.RELEASE',
-            'org.springframework:spring-context:4.0.4.RELEASE'
+            project(':core'),
+            project(':web')
     )
     testCompile(
             'junit:junit:4.11'

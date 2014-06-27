@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+
+sourceCompatibility = 1.5
+version = '1.0'
+
+jar {
+    baseName = 'com.liqing.core'
+    version = '0.1.0-SNAPSHOT'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile(
+            'commons-dbcp:commons-dbcp:1.4',
+            'mysql:mysql-connector-java:5.1.30',
+            'javax.servlet:servlet-api:2.5',
+            'javax.servlet.jsp:jsp-api:2.2.1-b03',
+            'javax.servlet:jstl:1.2',
+            'org.springframework:spring-core:4.0.4.RELEAS',
+            'org.springframework:spring-beans:4.0.4.RELEASE',
+            'org.springframework:spring-context:4.0.4.RELEASE'
+    )
+}
