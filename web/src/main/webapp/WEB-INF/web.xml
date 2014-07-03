@@ -11,7 +11,7 @@
 
     <servlet>
         <servlet-name>Book</servlet-name>
-        <servlet-class>liqing.controller.BookController</servlet-class>
+        <servlet-class>liqing.controller.DisplayBookController</servlet-class>
     </servlet>
 
     <servlet>

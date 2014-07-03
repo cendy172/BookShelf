@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BookController extends HttpServlet {
+public class DisplayBookController extends HttpServlet {
     private JDBCService jdbcService;
 
     @Override
