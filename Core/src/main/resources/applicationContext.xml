@@ -32,11 +32,14 @@ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
         </constructor-arg>
     </bean>
 
+    <bean id="addBookValidator" class="com.liqing.validator.AddBookValidator">
+    </bean>
+
     <bean id="addBookService" class="com.liqing.service.AddBookService">
         <constructor-arg>
             <ref bean="jdbcTemplate"/>
+            <ref bean="addBookValidator"/>
         </constructor-arg>
     </bean>
-
 
 </beans>

@@ -10,7 +10,7 @@ public class AppServletContextListener implements javax.servlet.ServletContextLi
     @Override
     public void contextInitialized(ServletContextEvent sce) {
 
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("dataSource.xml");
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         sce.getServletContext().setAttribute("jdbcService", classPathXmlApplicationContext.getBean("jdbcService"));
         sce.getServletContext().setAttribute("addBookService", classPathXmlApplicationContext.getBean("addBookService"));
     }
