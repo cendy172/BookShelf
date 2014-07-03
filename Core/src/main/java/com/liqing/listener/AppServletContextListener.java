@@ -12,11 +12,13 @@ public class AppServletContextListener implements javax.servlet.ServletContextLi
 
         ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("dataSource.xml");
         sce.getServletContext().setAttribute("jdbcService", classPathXmlApplicationContext.getBean("jdbcService"));
+        sce.getServletContext().setAttribute("addBookService", classPathXmlApplicationContext.getBean("addBookService"));
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         ((JDBCService) sce.getServletContext().getAttribute("jdbcService")).closeConnection();
         sce.getServletContext().removeAttribute("jdbcService");
+        sce.getServletContext().removeAttribute("addBookService");
     }
 }

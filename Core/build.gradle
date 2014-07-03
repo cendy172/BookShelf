@@ -25,6 +25,25 @@ dependencies {
             'javax.servlet:jstl:1.2',
             'org.springframework:spring-core:4.0.4.RELEAS',
             'org.springframework:spring-beans:4.0.4.RELEASE',
-            'org.springframework:spring-context:4.0.4.RELEASE'
+            'org.springframework:spring-context:4.0.4.RELEASE',
+            'org.springframework:spring-jdbc:4.0.5.RELEASE'
     )
 }
+
+task(hello) << {
+    println "hello"
+}
+
+task('hello3') << {
+    println "hello3"
+}
+
+task hello2 << {
+    println "hello2"
+}
+
+tasks.create(name: 'hello1') << {
+    println "hello1"
+}
+
+hello.mustRunAfter hello1
