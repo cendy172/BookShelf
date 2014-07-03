@@ -28,14 +28,10 @@ public class AddBookController extends HttpServlet {
 
     public void doPost(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         Book book = new Book();
-        int isbn = Integer.valueOf(httpRequest.getParameter("isbn"));
-        String name = httpRequest.getParameter("name");
-        double price = Double.valueOf(httpRequest.getParameter("price"));
-        String author = httpRequest.getParameter("author");
-        book.setIsbn(isbn);
-        book.setName(name);
-        book.setPrice(price);
-        book.setAuthor(author);
+        book.setIsbn(Integer.valueOf(httpRequest.getParameter("isbn")));
+        book.setName(httpRequest.getParameter("name"));
+        book.setPrice(Double.valueOf(httpRequest.getParameter("price")));
+        book.setAuthor(httpRequest.getParameter("author"));
 
         addBookService.addBook(book);
         httpServletResponse.sendRedirect("display");
