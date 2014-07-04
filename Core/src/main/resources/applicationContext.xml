@@ -12,18 +12,11 @@ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
         </property>
     </bean>
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${database.driver}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
-    </bean>
-
-    <bean id="jdbcService" class="com.liqing.dto.JDBCService">
-        <constructor-arg type="String" value="${database.driver}"/>
-        <constructor-arg type="String" value="${database.url}"/>
-        <constructor-arg type="String" value="${database.username}"/>
-        <constructor-arg type="String" value="${database.password}"/>
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -38,6 +31,8 @@ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
     <bean id="addBookService" class="com.liqing.service.AddBookService">
         <constructor-arg>
             <ref bean="jdbcTemplate"/>
+        </constructor-arg>
+        <constructor-arg>
             <ref bean="addBookValidator"/>
         </constructor-arg>
     </bean>

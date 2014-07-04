@@ -16,6 +16,7 @@ public class AddBookService {
 
     public void addBook(Book book) {
         if(addBookValidator.validateBook(book)){
+            //调用BookDao
             jdbcTemplate.execute("insert into book values(" + book.getIsbn() + ",\"" + book.getName() + "\"," + book.getPrice() + ",\"" + book.getAuthor() + "\")");
         }else{
             throw new RuntimeException();
