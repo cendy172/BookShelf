@@ -1,7 +1,7 @@
 package liqing.controller;
 
 import com.liqing.domain.Book;
-import com.liqing.dto.JDBCService;
+import com.liqing.service.DisplayBookService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,34 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayBookController extends HttpServlet {
-    private JDBCService jdbcService;
+    private DisplayBookService displayBookService;
 
     @Override
     public void init() throws ServletException {
         super.init();
-        jdbcService = (JDBCService) getServletConfig().getServletContext().getAttribute("jdbcService");
+        displayBookService = (DisplayBookService) getServletConfig().getServletContext().getAttribute("displayBookService");
     }
 
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        ArrayList<Book> books = new ArrayList<Book>();
-        ResultSet result = jdbcService.executeSelect("select * from book");
-        try {
-            while (result.next()) {
-                Book book = new Book();
-                book.setIsbn(result.getInt(1));
-                book.setName(result.getString(2));
-                book.setPrice(result.getDouble(3));
-                book.setAuthor(result.getString(4));
-                books.add(book);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        List<Book> books = displayBookService.getAllBooks();
+
         httpServletRequest.setAttribute("books", books);
         RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("/WEB-INF/jsp/display.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);

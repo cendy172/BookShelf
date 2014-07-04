@@ -43,4 +43,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
         </constructor-arg>
     </bean>
 
+    <bean id="displayBookService" class="com.liqing.service.DisplayBookService">
+        <constructor-arg>
+            <ref bean="bookRepository"/>
+        </constructor-arg>
+    </bean>
+
 </beans>
