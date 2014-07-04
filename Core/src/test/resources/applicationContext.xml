@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>database.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${database.driver}"/>
+        <property name="url" value="${database.url}"/>
+        <property name="username" value="${database.username}"/>
+        <property name="password" value="${database.password}"/>
+    </bean>
+
+    <bean id="bookRepository" class="com.liqing.dao.BookRepository">
+        <constructor-arg>
+            <ref bean="jdbcTemplate"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg>
+            <ref bean="dataSource"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="addBookValidator" class="com.liqing.validator.AddBookValidator">
+    </bean>
+
+    <bean id="addBookService" class="com.liqing.service.AddBookService">
+        <constructor-arg>
+            <ref bean="bookRepository"/>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="addBookValidator"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="displayBookService" class="com.liqing.service.DisplayBookService">
+        <constructor-arg>
+            <ref bean="bookRepository"/>
+        </constructor-arg>
+    </bean>
+
+</beans>
