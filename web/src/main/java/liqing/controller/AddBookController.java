@@ -1,6 +1,5 @@
 package liqing.controller;
 
-import com.liqing.domain.Book;
 import com.liqing.service.AddBookService;
 
 import javax.servlet.RequestDispatcher;
@@ -27,13 +26,12 @@ public class AddBookController extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        Book book = new Book();
-        book.setIsbn(Integer.valueOf(httpRequest.getParameter("isbn")));
-        book.setName(httpRequest.getParameter("name"));
-        book.setPrice(Double.valueOf(httpRequest.getParameter("price")));
-        book.setAuthor(httpRequest.getParameter("author"));
+        Integer isbn = Integer.valueOf(httpRequest.getParameter("isbn"));
+        String name = httpRequest.getParameter("name");
+        Double price = Double.valueOf(httpRequest.getParameter("price"));
+        String author = httpRequest.getParameter("author");
 
-        addBookService.addBook(book);
+        addBookService.addBook(isbn, name, price, author);
         httpServletResponse.sendRedirect("display");
     }
 
